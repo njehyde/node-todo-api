@@ -32,11 +32,9 @@ app.get('/todos', (req, res) => {
 });
 
 app.get('/todos/:id', (req, res) => {
-    console.log(`Received: GET /todos/:${req.params.id}`);
     var id = req.params.id;
 
     if (!ObjectID.isValid(id)) {
-        console.log('Invalid id');
         return res.status(404).send();
     }
     
@@ -46,7 +44,6 @@ app.get('/todos/:id', (req, res) => {
         }
         res.send({todo});
     }, (e) => {
-        console.log('Caught exception: ', e);
         res.status(400).send();
     });
 });
